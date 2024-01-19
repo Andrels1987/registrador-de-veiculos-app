@@ -27,7 +27,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='homepage' index element={<Homepage />}/>
+        <Route path='/' element={<Homepage />}/>
         <Route path='veiculos' element={<ListaDeVeiculos collection={collectionVeiculos}/>} />
         <Route path='cadastrodeveiculos' element={<CadastrarVeiculo veiculoData={undefined}/>} />
         <Route path='atualizar/:id' element={<AtualizarVeiculo/>} />
