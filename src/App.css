@@ -1,0 +1,165 @@
+:root {
+  --azul: #1e90ff;
+  --preto: #000000;
+  --cinza: #575555;
+  --amarelo: #efe227;
+  --verde: #56f641;
+  --branco: #ffffff;
+  --chumbo: #2e2e2e;
+  --vermelho: #c73205;
+  --laranja: #c56b25;
+  --bege: #fef5e0;
+  --prata: #C0C0C0;
+  --border: #f316ef;
+}
+#root {
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.menu{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  line-height: 2em;
+  gap: 1em;
+}
+.menu a{
+  border: 1px solid white;
+  padding: 0 1.7em;
+  border-radius: 10px;
+}
+.menu a:hover{
+  border: 1px solid rgb(64, 62, 227);
+  padding: 0 1.7em;
+  border-radius: 10px;
+  color: black;
+  background-color: antiquewhite;
+}
+.minhadiv{
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+}
+.veiculo-list-item{
+  background-color: rgb(45, 45, 41);
+  height: 3rem;
+  overflow: hidden;
+  margin: .5em 0;
+  border: solid 3px white;
+  border-radius: 10px;
+  position: relative;
+}
+.veiculo-list-item > p{  
+  height: 100%;
+  margin-block-start: 0;
+  width: 100%;
+  padding-block-start: .7em;
+}
+.veiculo-info{
+  padding: 0 .2em;
+  display: flex; 
+}
+.info-acesso{
+  display: flex !important; 
+  flex-direction: column; 
+}
+.veiculo-info > section{
+  width: 99%;  
+  overflow: hidden;
+}
+.imagem-veiculo{
+  width: 10rem;
+  height: 10rem;
+  padding: 12px 15px;
+}
+.veiculo-list-item-exibido{
+  font-weight: bolder;
+  background-color: rgb(245, 245, 203);
+  color: #000000;
+  height: 23.5rem;
+  overflow: auto;
+  margin: .5em 0;
+  position: relative;
+}
+
+#car-color{
+  display: inline-block;
+  width:20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  margin-left:1em;
+}
+
+#form-pesquisar-veiculo{
+  display: flex;
+  flex-direction: row;
+  border: solid white 1px;
+  padding: 1em;
+  background-color: rgb(55, 51, 51);
+  align-items: center;
+  justify-content: center;
+}
+#form-pesquisar-veiculo div{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.placa, .modelo, .marca, .cor, .vaga, 
+.autorizacao, .acesso, .nome-morador, .doc, .bloco, .apartamento,
+.nome-visitante, .doc-visitante{
+  display: flex;
+  flex-direction: row;
+  padding: .5em 0;
+
+}
+.vaga input {
+  max-width:200px;
+}
+input{
+ width: 350px;
+ margin-left: .4em;
+}
+
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+body{
+    background-color: #000000;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
