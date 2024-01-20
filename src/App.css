@@ -142,7 +142,22 @@ input{
     transform: rotate(360deg);
   }
 }
+@media (max-width: 600px) {
+  .minhadiv{
+    width: 100%;
 
+  }
+  .minhadiv > form{
+    width: 100vw;
+  }
+  .morador{
+    width: 80%;
+  }
+  #root{
+    width: 100vw;
+    overflow: hidden;
+  }
+}
 @media (prefers-reduced-motion: no-preference) {
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
@@ -179,11 +194,12 @@ body{
 .minhadiv{
   width: 100%;
 }
-.minhadiv  > form {
+.minhadiv > form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 }
 #form-pesquisar-veiculo div{
   width: 100%;
