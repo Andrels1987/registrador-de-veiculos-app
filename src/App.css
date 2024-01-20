@@ -116,18 +116,14 @@
   align-items: flex-start;
 }
 
-form div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+
 .placa, .modelo, .marca, .cor, .vaga, 
 .autorizacao, .acesso, .nome-morador, .doc, .bloco, .apartamento,
 .nome-visitante, .doc-visitante{
   display: flex;
   flex-direction: row;
   padding: .5em 0;
-
+  width: 85%;
 }
 .vaga input {
   max-width:200px;
@@ -154,6 +150,58 @@ input{
 body{
     background-color: #000000;
   }
+#root{
+  display: block;
+  position: relative;
+}
+#form-pesquisar-veiculo{
+  display: flex;  
+}
+#form-pesquisar-veiculo input{
+  width: 100%;
+  position: relative;
+}
+
+#form-pesquisar-veiculo fieldset{
+    display: block;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-block-start: 0;
+    padding-inline-start: 3em;
+    padding-inline-end: 3em;
+    padding-block-end: 1em;
+    min-inline-size: 0;
+    border-width: 2px;
+    border-style: groove;
+    border-color: rgb(192, 192, 192);
+    border-image: initial;
+} 
+.minhadiv{
+  width: 100%;
+}
+.minhadiv  > form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#form-pesquisar-veiculo div{
+  width: 100%;
+  display: block;
+  position: relative;
+} 
+
+form div {
+  display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* width: 100%; */
+    align-items: center;
+    /* padding: 0 5em;*/
+
+}
+  
+  
 }
 
 .card {
