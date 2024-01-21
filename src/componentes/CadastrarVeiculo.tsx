@@ -23,6 +23,7 @@ const CadastrarVeiculo = ({veiculoData}:PropsData ): JSX.Element => {
     const cadastrar = (e:any) =>{
         e.preventDefault();
         cadastrarVeiculo({veiculo})
+        cancelar(e);
         
     }
     const atualizar = (e:any) =>{
@@ -31,6 +32,10 @@ const CadastrarVeiculo = ({veiculoData}:PropsData ): JSX.Element => {
         
     }
 
+    const cancelar = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) =>{
+        e.preventDefault()
+        setVeiculo(new Veiculo());
+    }
     console.log(veiculo);
     
 
@@ -118,8 +123,9 @@ const CadastrarVeiculo = ({veiculoData}:PropsData ): JSX.Element => {
                     <button onClick={(e) => atualizar(e)}>Atualizar</button>
                     ): (
                         <button onClick={(e) => cadastrar(e)}>Cadastrar</button>
-                    )}
+                        )}
                     
+                    <button onClick={(e) => cancelar(e)}>Limpar</button>
                     <Link to={"/"}>Cancelar</Link>
                 </div>
             </form>

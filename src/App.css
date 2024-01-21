@@ -67,6 +67,13 @@
   display: inline-block;
   padding: 0;
   margin: 0 auto;
+  text-shadow: 0px 0px 5px #a902f1d7,
+                2px 0px 5px #1e00fdd7;
+}
+.veiculo-list-item > p:hover{  
+  font-weight: 600;
+  text-shadow: 0px 0px 5px #013a0ad7,
+                2px 0px 5px #555501d7;
 }
 .veiculo-list-item p span{  
   margin-top: 18px;
