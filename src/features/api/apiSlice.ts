@@ -29,7 +29,7 @@ export const veiculoApi = createApi({
           nomeProprietario: veiculo.motorista.nome, 
           foto: veiculo.foto, 
           vaga: veiculo.vaga,
-          estaAutorizado: veiculo.estaAutorizado, 
+          tipoDeAutorizacao: veiculo.tipoDeAutorizacao, 
           statusDeAcesso: veiculo.status_de_acesso, 
           observacao: veiculo.observacao, 
           bloco: veiculo.motorista.bloco,

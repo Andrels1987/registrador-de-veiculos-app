@@ -50,6 +50,7 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
         parent.scrollTop = 0
     }
        
+       
 
     const registrarEntrada = (id: string, e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
