@@ -58,16 +58,31 @@
   border: solid 3px white;
   border-radius: 10px;
   position: relative;
+  padding: 5px 0;
 }
+
 .veiculo-list-item > p{  
   height: 100%;
-  margin-block-start: 0;
   width: 100%;
-  padding-block-start: .7em;
+  display: inline-block;
+  padding: 0;
+  margin: 0 auto;
+}
+.veiculo-list-item p span{  
+  margin-top: 18px;
+}
+.logos{
+  width: 60px;
+  height: 40px;
+  padding: 0 1em;
+  margin-top: 5px;
+  z-index: -10;
+  pointer-events: none;
 }
 .veiculo-info{
   padding: 0 .2em;
-  display: flex; 
+  display: flex;
+  margin-top: 1em; 
 }
 .info-acesso{
   display: flex !important; 

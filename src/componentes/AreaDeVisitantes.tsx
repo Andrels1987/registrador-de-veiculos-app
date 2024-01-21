@@ -2,6 +2,7 @@ import { useBuscarRegistroDeEntradasDeVeiculosQuery, useRegistrarSaidaDeVisitant
 import { Registro } from "../modelos/Registros";
 import vite from "../../public/vite.svg"
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const arrayVeiculo: Array<Registro> = []
 let registrosFiltrados: Array<any> = [] 
@@ -50,9 +51,9 @@ const AreaDeVisitantes = (): JSX.Element =>  {
         {registrosFiltrados.length > 0 ? registrosFiltrados.map(collection => (            
             <div  onClick={(e) => mostrarInfoVeiculo(e)} className={`veiculo-list-item`} key={collection.id} >
 
-            <p>Veiculo : {collection.veiculo.placa} | {collection.veiculo.marca} | {collection.veiculo.modelo} | <span style={{ 
-                backgroundColor:`var(--${collection.veiculo.cor})`,
-                border: `${collection.veiculo.cor === 'branco' ? 'black': '#deb887'} solid 2px`}} id="car-color"></span></p>
+<p>Veiculo : {collection.veiculo.placa} | <img className="logos" src={`/logos/${collection.veiculo.marca.trim()+'.png' || vite}`}/> | {collection.veiculo?.modelo} | <span style={{ 
+                            backgroundColor:`var(--${collection.veiculo.cor})`,
+                            border: `${collection.cor === 'branco' ? 'black': '#deb887'} solid 2px`}} id="car-color"></span></p>
             <div className="veiculo-info">
                 <img className={'imagem-veiculo'} src={collection.veiculo.foto || vite} alt="imagem do veiculo" />
                 <section >
@@ -79,7 +80,7 @@ const AreaDeVisitantes = (): JSX.Element =>  {
             </div>
         </div>
         )): (
-            <p>Nenhum registro encontrado</p>
+            <p>Nenhum registro encontrado <Link to={"/"}>Voltar</Link></p>
         )}
     </div>
   )

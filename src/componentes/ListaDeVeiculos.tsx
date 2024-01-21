@@ -30,6 +30,7 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
         setPesquisaVeiculo([...newCollection]);
     }
 
+
     const mostrarInfoVeiculo = (e: any) => {
         let exibidos = document.getElementsByClassName("veiculo-list-item-exibido");
         let parent = e.target.parentNode
@@ -47,8 +48,8 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
         }
         
         parent.scrollTop = 0
-        console.log(parent);        
     }
+       
 
     const registrarEntrada = (id: string, e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
@@ -69,9 +70,11 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
             {pesquisaVeiculo.length > 0 ?
                 (pesquisaVeiculo.map(v =>
                 <div onClick={(e) => mostrarInfoVeiculo(e)} className="veiculo-list-item" key={v.id} >
-                    <p>Veiculo : {v.placa} | {v.marca} | {v.modelo} | <span style={{ 
-                        backgroundColor:`var(--${v.cor})`,
-                        border: `${v.cor === 'branco' ? 'black': '#deb887'} solid 2px`}} id="car-color"></span></p>
+                    
+                        <p>Veiculo : {v.placa} | <img className="logos" src={`/logos/${v.marca.trim()+'.png' || vite}`}/> | {v.modelo} | <span style={{ 
+                            backgroundColor:`var(--${v.cor})`,
+                            border: `${v.cor === 'branco' ? 'black': '#deb887'} solid 2px`}} id="car-color"></span></p>
+                    
                     <div className="veiculo-info">
                         <img className={'imagem-veiculo'} src={v.foto || vite} alt="imagem do veiculo" />
                         <section >

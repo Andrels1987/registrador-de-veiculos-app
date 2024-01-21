@@ -2,6 +2,7 @@
 import { Veiculo } from '../modelos/Veiculo'
 import { useAtualizarVeiculoMutation, useCadastrarVeiculoMutation } from '../features/api/apiSlice';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type PropsData = {
     veiculoData: Veiculo | undefined
@@ -112,14 +113,14 @@ const CadastrarVeiculo = ({veiculoData}:PropsData ): JSX.Element => {
                     </div>
 
                 </div>
-                <div>
+                <div style={{display: "flex", flexDirection: "row"}}>
                     {veiculo.id !== undefined ? (
                     <button onClick={(e) => atualizar(e)}>Atualizar</button>
                     ): (
                         <button onClick={(e) => cadastrar(e)}>Cadastrar</button>
                     )}
                     
-                    <button id='cancelar'>Cancelar</button>
+                    <Link to={"/"}>Cancelar</Link>
                 </div>
             </form>
         </div>
