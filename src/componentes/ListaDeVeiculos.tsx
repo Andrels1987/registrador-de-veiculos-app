@@ -23,7 +23,7 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
 
     const handlePesquisaVeiculo = () => {
         let newCollection: Array<Veiculo> = collection.filter(c => {
-            if (c.placa?.toUpperCase().includes(placa) && c?.placa !== null) {
+            if (c.placa?.toUpperCase().includes(placa.toUpperCase()) && c?.placa !== null) {
                 return c;
             }
         })
@@ -45,12 +45,10 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
                 e.scrollTop = 0;
             }
         }
-        console.log(exibidos);
         
         parent.scrollTop = 0
         console.log(parent);        
     }
-
 
     const registrarEntrada = (id: string, e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
@@ -68,7 +66,8 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
                 </fieldset>
 
             </form>
-            {pesquisaVeiculo.map(v =>
+            {pesquisaVeiculo.length > 0 ?
+                (pesquisaVeiculo.map(v =>
                 <div onClick={(e) => mostrarInfoVeiculo(e)} className="veiculo-list-item" key={v.id} >
                     <p>Veiculo : {v.placa} | {v.marca} | {v.modelo} | <span style={{ 
                         backgroundColor:`var(--${v.cor})`,
@@ -98,7 +97,15 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
                             <button onClick={(e) => registrarEntrada(v.id, e)}>Registrar Entrada</button>
                         </section>
                     </div>
-                </div>)}
+                </div>)):(  
+                    <div>
+                    {placa !== '' && pesquisaVeiculo.length === 0 ?
+                        (<div>
+                            <h5>Nenhum veiculo encontrado com essa placa</h5>
+                            <Link to={{pathname:'/cadastrodeveiculos'}}>Cadastrar</Link>
+                        </div>) :(<p>Sem veiculos cadastrados</p>) }                
+                    </div>                      
+                )}
         </div>
     )
 }
