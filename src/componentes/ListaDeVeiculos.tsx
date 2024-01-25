@@ -3,6 +3,7 @@ import { Veiculo } from "../modelos/Veiculo"
 import vite from "../../public/vite.svg"
 import { Link } from "react-router-dom"
 import { useRegistrarentradadevisitantesMutation } from "../features/api/apiSlice"
+import { isAction } from "@reduxjs/toolkit"
 
 type Props = {
     collection: Array<any>
@@ -12,6 +13,8 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
     const [pesquisaVeiculo, setPesquisaVeiculo] = useState(collection);
     const [registrarEntradaDeVisitante] = useRegistrarentradadevisitantesMutation();
     const [placa, setPlaca] = useState("");
+    const [parentNode, setParentNone] = useState(null);
+    const [isActive, setIsActive] = useState(false)
 
     useEffect(() => {
         handlePesquisaVeiculo();
@@ -34,11 +37,16 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
     const mostrarInfoVeiculo = (e: any) => {
         let exibidos = document.getElementsByClassName("veiculo-list-item-exibido");
         let parent = e.target.parentNode
-        console.log(parent);
+        
         if (parent.className === "veiculo-list-item") {
+            console.log(parentNode);            
             parent.className = "veiculo-list-item-exibido"
         } else if (parent.className === "veiculo-list-item-exibido") {
+            console.log(parentNode);            
             parent.className = "veiculo-list-item"
+        }else if(parent.className === "veiculo-info"){
+            console.log(parentNode); 
+            return           
         }
         for(let e of exibidos){
             if(e !== parent){
@@ -47,10 +55,17 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
             }
         }
         
+        
         parent.scrollTop = 0
+        setParentNone(parent);
     }
-       
-       console.log(pesquisaVeiculo);
+    
+    const expandirImagem = (e:React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+        e.preventDefault();
+        setIsActive(!isActive)       
+    }
+    
+    //COLOCAR A LISTA EM UM COMPONENTE APENAS
        
 
     const registrarEntrada = (id: string, e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -77,8 +92,9 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
                             backgroundColor:`var(--${v.cor})`,
                             border: `${v.cor === 'branco' ? 'black': '#deb887'} solid 2px`}} id="car-color"></span></p>
                     
-                    <div className="veiculo-info">
-                        <img className={'imagem-veiculo'} src={v.foto || vite} alt="imagem do veiculo" />
+                    <div className={`veiculo-info`}>
+                            <div className={isActive ?"bg-image": ""}></div>                       
+                            <img onClick={e => expandirImagem(e)} className={!isActive ? 'imagem-veiculo' : 'imagem-veiculo-expanded'} src={v.foto || vite} alt="imagem do veiculo" />                       
                         <section >
                             {v.motorista !== null ? (
                                 <div>

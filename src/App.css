@@ -104,6 +104,19 @@
   height: 10rem;
   padding: 12px 15px;
 }
+.imagem-veiculo-expanded{
+ position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: .5s;
+}
+.bg-image{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #e9eff5df;
+  filter: blur(.1em);
+}
 .veiculo-list-item-exibido{
   font-weight: bolder;
   background-color: rgb(245, 245, 203);

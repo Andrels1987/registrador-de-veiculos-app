@@ -7,7 +7,6 @@ import CadastrarVeiculo from './CadastrarVeiculo';
 const AtualizarVeiculo = () : JSX.Element=> {
     let {id} = useParams();
     const {data: veiculoData} = useGetVeiculoPeloIdQuery({id})
-    console.log(veiculoData);
     
     
   return (

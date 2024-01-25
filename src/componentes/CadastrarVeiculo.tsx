@@ -3,6 +3,7 @@ import { Veiculo } from '../modelos/Veiculo'
 import { useAtualizarVeiculoMutation, useCadastrarVeiculoMutation } from '../features/api/apiSlice';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Profile from './Profile';
 
 type PropsData = {
     veiculoData: Veiculo | undefined
@@ -15,7 +16,7 @@ const CadastrarVeiculo = ({veiculoData}:PropsData ): JSX.Element => {
     const [atualizarVeiculo] = useAtualizarVeiculoMutation()    
     useEffect(() => {
       if(veiculoData !== undefined){
-        setVeiculo(veiculoData)
+        setVeiculo(veiculoData)       
       }
     }, [veiculoData])
     
@@ -36,12 +37,13 @@ const CadastrarVeiculo = ({veiculoData}:PropsData ): JSX.Element => {
         e.preventDefault()
         setVeiculo(new Veiculo());
     }
-    console.log(veiculo);
     
+
 
     return (
         <div className='minhadiv'>
             <h3>Cadastrar Veiculo</h3>
+            <Profile setData={setVeiculo} data={veiculo}/>
             <form action="">
                 <div  className="placa">
                     <label htmlFor="placa">Placa</label>
