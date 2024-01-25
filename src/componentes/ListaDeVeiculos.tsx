@@ -3,7 +3,6 @@ import { Veiculo } from "../modelos/Veiculo"
 import vite from "../../public/vite.svg"
 import { Link } from "react-router-dom"
 import { useRegistrarentradadevisitantesMutation } from "../features/api/apiSlice"
-import { isAction } from "@reduxjs/toolkit"
 
 type Props = {
     collection: Array<any>
