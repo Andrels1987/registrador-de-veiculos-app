@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { Veiculo } from "../modelos/Veiculo"
-import vite from "../../public/vite.svg"
 import { Link } from "react-router-dom"
 import { useRegistrarentradadevisitantesMutation } from "../features/api/apiSlice"
+import Lista from "./Lista"
 
 type Props = {
     collection: Array<any>
@@ -12,8 +12,7 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
     const [pesquisaVeiculo, setPesquisaVeiculo] = useState(collection);
     const [registrarEntradaDeVisitante] = useRegistrarentradadevisitantesMutation();
     const [placa, setPlaca] = useState("");
-    const [parentNode, setParentNone] = useState(null);
-    const [isActive, setIsActive] = useState(false)
+
 
     useEffect(() => {
         handlePesquisaVeiculo();
@@ -33,43 +32,10 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
     }
 
 
-    const mostrarInfoVeiculo = (e: any) => {
-        let exibidos = document.getElementsByClassName("veiculo-list-item-exibido");
-        let parent = e.target.parentNode
-        
-        if (parent.className === "veiculo-list-item") {
-            console.log(parentNode);            
-            parent.className = "veiculo-list-item-exibido"
-        } else if (parent.className === "veiculo-list-item-exibido") {
-            console.log(parentNode);            
-            parent.className = "veiculo-list-item"
-        }else if(parent.className === "veiculo-info"){
-            console.log(parentNode); 
-            return           
-        }
-        for(let e of exibidos){
-            if(e !== parent){
-                e.className = "veiculo-list-item"
-                e.scrollTop = 0;
-            }
-        }
-        
-        
-        parent.scrollTop = 0
-        setParentNone(parent);
-    }
-    
-    const expandirImagem = (e:React.MouseEvent<HTMLImageElement, MouseEvent>) => {
-        e.preventDefault();
-        setIsActive(!isActive)       
-    }
-    
-    //COLOCAR A LISTA EM UM COMPONENTE APENAS
-       
 
-    const registrarEntrada = (id: string, e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const registrarEntrada = (id: string, e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
-        registrarEntradaDeVisitante({id})
+        registrarEntradaDeVisitante({ id })
     }
     return (
         <div>
@@ -85,46 +51,21 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
             </form>
             {pesquisaVeiculo.length > 0 ?
                 (pesquisaVeiculo.map(v =>
-                <div onClick={(e) => mostrarInfoVeiculo(e)} className="veiculo-list-item" key={v.id} >
-                    
-                        <p>Veiculo : {v.placa} | <img className="logos" src={`/logos/${v.marca.trim()+'.png' || vite}`}/> | {v.modelo} | <span style={{ 
-                            backgroundColor:`var(--${v.cor})`,
-                            border: `${v.cor === 'branco' ? 'black': '#deb887'} solid 2px`}} id="car-color"></span></p>
-                    
-                    <div className={`veiculo-info`}>
-                            <div className={isActive ?"bg-image": ""}></div>                       
-                            <img onClick={e => expandirImagem(e)} className={!isActive ? 'imagem-veiculo' : 'imagem-veiculo-expanded'} src={v.foto || vite} alt="imagem do veiculo" />                       
-                        <section >
-                            {v.motorista !== null ? (
-                                <div>
-                                    <legend style={{ background: "#D5D4D2", display: 'inline', width: '100%' }}>Dados do Motorista</legend>
-                                    <p>Tipo de acesso: {v.status_de_acesso}</p>
-                                    <p>{v.motorista.nome || "sem nome"}</p>
-                                    <p>{v.motorista.apartamento} | {v.motorista.bloco}</p>
-                                    <p>{v.motorista.numeroDocumento || "sem documento cadastrado"}</p>
-                                </div>
-                            ) : "sem motorista cadastrado"
-                            }
-
-                        </section>
+                    <div key={v.id} className="lista">
+                        <Lista  v={v}/> 
+                        <div>
+                            <Link style={{border: 'solid 1px white', borderRadius: '5px',padding: '3px 5px'}}to={`/atualizar/${v.id}`}>Atualizar</Link>
+                            <button onClick={(e) => registrarEntrada(v.id, e)}>Registrar Entrada</button>                 
+                        </div>      
                     </div>
-                    <div className="info-acesso">
-                        <section>
-                            <p >Vaga: {v.vaga}</p>
-                            <p >Tipo de autorização: {v.tipoDeAutorizacao}</p>
-                            <p >Observação: <code>{v.observacao}</code></p>
-                            <Link to={`/atualizar/${v.id}`}>Atualizar</Link>
-                            <button onClick={(e) => registrarEntrada(v.id, e)}>Registrar Entrada</button>
-                        </section>
-                    </div>
-                </div>)):(  
+                )) : (
                     <div>
-                    {placa !== '' && pesquisaVeiculo.length === 0 ?
-                        (<div>
-                            <h5>Nenhum veiculo encontrado com essa placa</h5>
-                            <Link to={{pathname:'/cadastrodeveiculos'}}>Cadastrar</Link>
-                        </div>) :(<p>Sem veiculos cadastrados</p>) }                
-                    </div>                      
+                        {placa !== '' && pesquisaVeiculo.length === 0 ?
+                            (<div>
+                                <h5>Nenhum veiculo encontrado com essa placa</h5>
+                                <Link to={{ pathname: '/cadastrodeveiculos' }}>Cadastrar</Link>
+                            </div>) : (<p>Sem veiculos cadastrados</p>)}
+                    </div>
                 )}
         </div>
     )
