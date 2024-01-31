@@ -2,17 +2,17 @@ import { useEffect, useState } from "react"
 import { Veiculo } from "../modelos/Veiculo"
 import { Link } from "react-router-dom"
 import { useRegistrarentradadevisitantesMutation } from "../features/api/apiSlice"
-import Lista from "./Lista"
+import ItemDaLista from "./ItemDaLista"
 
 type Props = {
-    collection: Array<any>
+    collection: Array<any>,
+    mostrarInfo: Function
 }
 
-const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
+const ListaDeVeiculos = ({ collection, mostrarInfo}: Props): JSX.Element => {
     const [pesquisaVeiculo, setPesquisaVeiculo] = useState(collection);
     const [registrarEntradaDeVisitante] = useRegistrarentradadevisitantesMutation();
     const [placa, setPlaca] = useState("");
-
 
     useEffect(() => {
         handlePesquisaVeiculo();
@@ -37,6 +37,8 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
         e.preventDefault()
         registrarEntradaDeVisitante({ id })
     }
+
+
     return (
         <div>
             <form action="" id="form-pesquisar-veiculo">
@@ -51,8 +53,8 @@ const ListaDeVeiculos = ({ collection }: Props): JSX.Element => {
             </form>
             {pesquisaVeiculo.length > 0 ?
                 (pesquisaVeiculo.map(v =>
-                    <div key={v.id} className="lista">
-                        <Lista  v={v}/> 
+                    <div key={v.id} onClick={(e) => mostrarInfo(e)} className="veiculo-list-item">
+                        <ItemDaLista  v={v}/> 
                         <div>
                             <Link style={{border: 'solid 1px white', borderRadius: '5px',padding: '3px 5px'}}to={`/atualizar/${v.id}`}>Atualizar</Link>
                             <button onClick={(e) => registrarEntrada(v.id, e)}>Registrar Entrada</button>                 

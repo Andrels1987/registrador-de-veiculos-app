@@ -12,13 +12,7 @@
   --prata: #C0C0C0;
   --border: #f316ef;
 }
-#root {
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .menu{
   width: 100%;
   height: 100vh;
@@ -51,51 +45,43 @@
   
 }
 .veiculo-list-item{
-  background-color: rgb(22, 22, 15);
   height: 3rem;
   overflow: hidden;
-  margin: .5em 0;
-  position: relative;
-  padding: 5px .5em;
-  border-radius: 10px 10px 0 0;
-}
-.lista{
-  background-color: rgb(1, 1, 1);
-  border-radius: 10px;
-  overflow: hidden;
-  margin: .5em .2em;
-  border: solid 2px rgb(172, 70, 6);
-  padding: 0 .1em;
+  margin-bottom: .5em;
+  border-radius: 7px;
+  text-align: center;
 }
 
-.veiculo-list-item > p{  
-  height: 100%;
-  width: 100%;
-  display: inline-block;
-  margin: 0 auto;
-  text-shadow: 0px 0px 5px #a902f1d7,
-                2px 0px 5px #1e00fdd7;
+
+.veiculo-list-item > section{  
+  background-color: #151f14;
+  padding-bottom: 1em;
+  text-shadow: 0px 0px 5px #504f4fd7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
 }
 .veiculo-list-item > p:hover{  
   font-weight: 600;
   text-shadow: 0px 0px 5px #013a0ad7,
                 2px 0px 5px #555501d7;
 }
-.veiculo-list-item p span{  
-  margin-top: 18px;
+ span{  
+  position: relative !important;
 }
-.logos{
-  width: 60px;
-  height: 40px;
-  padding: 0 1em;
-  margin-top: 5px;
-  z-index: -10;
+.veiculo-list-item section span, p{  
   pointer-events: none;
 }
+.logos{
+  width: 40px;
+  height: 32px;
+  margin-top: 5px;
+  pointer-events: none;
+  margin-bottom: 10px;
+}
 .veiculo-info{
-  padding: 0 .2em;
   display: flex;
-  margin-top: 1em; 
   justify-content: center;
 }
 .info-acesso{
@@ -108,9 +94,9 @@
   overflow: hidden;
 }
 .imagem-veiculo{
-  width: 10rem;
-  height: 10rem;
-  padding: 12px 15px;
+  width: 8rem;
+  height: 8rem;
+  padding: 8px 10px;
 }
 .imagem-veiculo-expanded{
  position: absolute;
@@ -126,34 +112,53 @@
   filter: blur(.1em);
 }
 .veiculo-list-item-exibido{
-  font-weight: bolder;
-  background-color: rgb(19, 19, 19);
-  color: #fefefe;
+  border-radius: 10px;
+  background-color: rgb(118, 124, 118);
+  color: #0a1e09;
   height: 24.5rem;
   overflow: auto;
   margin: .5em 0;
   position: relative;
-  font-weight: 800;
-  padding: 0 .2em;
+  font-weight: 500;
+  padding: .2em .2em;
+  display: flex;
+  flex-direction: column;
+}
+.veiculo-list-item-exibido > section{  
+  padding: 2px 0;
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  height: 40px;
+  margin-bottom: .8em;
+}
+.veiculo-list-item-exibido > section p,span, img{  
+  padding: 0;
+  margin: 0;
+}
+.veiculo-list-item-exibido > section p,span{  
+  padding: 5px 0;
+  margin: 0;
 }
 
 #car-color{
   display: inline-block;
   width:20px;
-  height: 20px;
+  height: 13px;
   border-radius: 50%;
   position: absolute;
-  margin-left:1em;
+  margin-left:.6em;
 }
 
 #form-pesquisar-veiculo{
   display: flex;
   flex-direction: row;
   border: solid white 1px;
+  border-radius: 10px;
   padding: 1em;
-  background-color: rgb(55, 51, 51);
   align-items: center;
   justify-content: center;
+  margin-bottom: .5em;
 }
 #form-pesquisar-veiculo div{
   display: flex;
@@ -177,6 +182,8 @@ input{
  width: 350px;
  margin-left: .4em;
 }
+
+.areadevisitantes{ text-align: center;}
 
 
 @keyframes logo-spin {
@@ -207,14 +214,8 @@ input{
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-body{
-    background-color: #030303;
-    width: 100%;
-  }
-#root{
-  display: block;
-  position: relative;
-}
+
+
 #form-pesquisar-veiculo{
   display: flex;  
 }
@@ -267,7 +268,7 @@ form div {
 }
 
 .card {
-  padding: 2em;
+  
 }
 
 .read-the-docs {

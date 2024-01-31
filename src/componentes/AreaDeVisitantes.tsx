@@ -1,20 +1,22 @@
-import { useBuscarRegistroDeEntradasDeVeiculosQuery, useRegistrarSaidaDeVisitanteMutation } from "../features/api/apiSlice"
-import { Registro } from "../modelos/Registros";
+import {useRegistrarSaidaDeVisitanteMutation } from "../features/api/apiSlice"
 import { useEffect, useState } from "react";
+import ItemDaLista from "./ItemDaLista";
 import { Link } from "react-router-dom";
-import Lista from "./Lista";
 
-const arrayVeiculo: Array<Registro> = []
+/* const arrayVeiculo: Array<Registro> = [] */
 let registrosFiltrados: Array<any> = []
-
-const AreaDeVisitantes = (): JSX.Element => {
+type Props = {
+    registros : any,
+    mostrarInfo: Function
+}
+const AreaDeVisitantes = ({registros, mostrarInfo}: Props): JSX.Element => {
     const [regs, setRegs] = useState(registrosFiltrados)
-    const { data: registros } = useBuscarRegistroDeEntradasDeVeiculosQuery(arrayVeiculo);
+    /* const { data: registros } = useBuscarRegistroDeEntradasDeVeiculosQuery(arrayVeiculo); */
     const [registrarSaidaDeVisitante] = useRegistrarSaidaDeVisitanteMutation()
 
     useEffect(() => {
         if (registros) {
-            registrosFiltrados = registros.filter(registro => registro.statusVisita === "presente")
+            registrosFiltrados = registros.filter((registro:any) => registro.statusVisita === "presente")
         }
         setRegs([...registrosFiltrados])
     }, [registros])
@@ -28,14 +30,15 @@ const AreaDeVisitantes = (): JSX.Element => {
     }
     return (      
            
-         <div >
+         <div className="areadevisitantes">
+            <h4>Veiculos sem autorização</h4>
                 {registrosFiltrados.length > 0 ? registrosFiltrados.map(v => (
-                    <div key={v.id} style={{display: 'flex'}} >
-                        <Lista   v={v.veiculo} />
+                    <div className="veiculo-list-item" key={v.id} onClick={(e) => mostrarInfo(e)}>
+                        <ItemDaLista   v={v.veiculo} />
                         <button onClick={(e) => registrarSaida(v.id, e)}>Registrar Saida</button>
                     </div>
                 )) : (
-                    <p>Nenhum registro encontrado <Link to={"/"}>Voltar</Link></p>
+                    <p style={{pointerEvents: "auto"}}>Nenhum registro encontrado <Link to={"/veiculos"}>Voltar</Link></p>
                 )}
         </div>
     )
