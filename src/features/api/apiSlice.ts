@@ -12,7 +12,10 @@ export const veiculoApi = createApi({
     getVeiculos: builder.query<Veiculo[], any>({
       query: () => ({
         url : '/todosveiculos',
-        method: 'GET'
+        method: 'GET',
+        headers:{
+          "Cache-control": "no-cache"
+        }
       }),
       transformResponse: (response:Veiculo[]) => response,
       providesTags: ['veiculos']
@@ -83,6 +86,9 @@ export const veiculoApi = createApi({
       query: () =>({
         url: '/buscarregistrosdevisitas',
         method: 'GET',
+        headers:{
+          "Cache-Control": "no-cache"
+        }
        }),
       transformResponse: (response:Registro[]) => response,
       providesTags:['veiculos']
