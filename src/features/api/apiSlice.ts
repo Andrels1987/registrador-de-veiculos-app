@@ -14,7 +14,8 @@ export const veiculoApi = createApi({
         url : '/todosveiculos',
         method: 'GET',
         headers:{
-          "Cache-control": "no-cache"
+          "Cache-control": "no-cache",
+          "charset": "utf-8"
         }
       }),
       transformResponse: (response:Veiculo[]) => response,
