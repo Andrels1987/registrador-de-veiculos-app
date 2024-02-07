@@ -7,8 +7,8 @@ import { Registro } from '../../modelos/Registros';
 export const veiculoApi = createApi({
   reducerPath: 'api',
   tagTypes: ['veiculos'],
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8023/' }),
-  //baseQuery: fetchBaseQuery({ baseUrl: 'https://registrador-de-veiculos.onrender.com' }),
+  //baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8023/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://registrador-de-veiculos.onrender.com' }),
   endpoints: (builder) => ({
     getVeiculos: builder.query<Veiculo[], any>({
       query: () => ({
