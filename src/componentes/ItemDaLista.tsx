@@ -18,14 +18,14 @@ const ItemDaLista = ({ v }: Props,) => {
 
     return (
         <>
-            <section> <p>{v.placa} | </p> <img className="logos" src={`/logos/${v.marca.trim() + '.png' || vite}`} />  <p>| {v.modelo} | </p>  <span style={{
+            <section> <p>{v.placa} | </p> <img alt="imagem do veiculo" className="logos" src={`/logos/${v.marca.trim() + '.png' || vite}`} />  <p>| {v.modelo} | </p>  <span style={{
                 backgroundColor: `var(--${v.cor})`,
                 border: `${v.cor === 'branco' ? 'black' : '#deb887'} solid 2px`
             }} id="car-color"></span></section>
 
             <div className={`veiculo-info`}>
                 <div className={isActive ? "bg-image" : ""}></div>
-                <img onClick={e => expandirImagem(e)} className={!isActive ? 'imagem-veiculo' : 'imagem-veiculo-expanded'} src={v.foto || vite} alt="imagem do veiculo" />
+                <img alt="imagem do veiculo" onClick={e => expandirImagem(e)} className={!isActive ? 'imagem-veiculo' : 'imagem-veiculo-expanded'} src={v.foto || vite} />
                 <section >
                     {v.motorista !== null ? (
                         <div>
