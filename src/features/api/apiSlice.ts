@@ -16,8 +16,7 @@ export const veiculoApi = createApi({
         method: 'GET',
         headers:{
           "Cache-control": "no-cache",
-          "charset": "utf-8",
-          "Content-type": "application/json"
+          'Content-Type': 'text/html; charset=utf-8'          
         }
       }),
       transformResponse: (response:Veiculo[]) => response,
@@ -90,8 +89,8 @@ export const veiculoApi = createApi({
         url: '/buscarregistrosdevisitas',
         method: 'GET',
         headers:{
-          "Cache-Control": "no-cache",
-          "Content-type": "application/json"
+          "Cache-control": "no-cache",
+          'Content-Type': 'text/html; charset=utf-8' 
         }
        }),
       transformResponse: (response:Registro[]) => response,
