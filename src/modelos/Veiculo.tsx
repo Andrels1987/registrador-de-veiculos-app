@@ -6,7 +6,7 @@ class Condutor {
   }
  
 class Veiculo {
-       "id": string = "";
+       "id": string;
       "modelo": string = "";
       "cor": string = "";
        "marca": string = "";
