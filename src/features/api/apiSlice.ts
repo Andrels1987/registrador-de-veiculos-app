@@ -16,7 +16,8 @@ export const veiculoApi = createApi({
         method: 'GET',
         headers:{
           "Cache-control": "no-cache",
-          'Content-Type': 'text/html; charset=utf-8'          
+          'Content-Type': 'text/html; charset=utf-8',
+          'X-Content-Type-Options': 'nosniff'      
         }
       }),
       transformResponse: (response:Veiculo[]) => response,
@@ -26,6 +27,9 @@ export const veiculoApi = createApi({
       query: ({veiculo}) =>({
         url: "/enviarveiculo",
         method: "POST",
+        headers: {
+          'X-Content-Type-Options': 'nosniff'
+        },
         body: {
           modelo: veiculo.modelo, 
           cor: veiculo.cor, 
@@ -48,9 +52,9 @@ export const veiculoApi = createApi({
       query: ({id}) => ({
         url: `/veiculo/id/${id}`,
         method: 'GET',
-        headers : {
-          
-        }
+        headers: {
+          'X-Content-Type-Options': 'nosniff'
+        },
       }),
       providesTags: ['veiculos']
     }),
@@ -58,6 +62,9 @@ export const veiculoApi = createApi({
       query: ({veiculo}) => ({
         url: `/atualizarveiculo/${veiculo.id}`,
         method: 'PUT',
+        headers: {
+          'X-Content-Type-Options': 'nosniff'
+        },
         body: {
           modelo: veiculo.modelo, 
           cor: veiculo.cor, 
@@ -80,6 +87,9 @@ export const veiculoApi = createApi({
       query: ({id}) =>({
         url: `/registrarentradadevisitantes/${id}`,
         method: "POST",
+        headers: {
+          'X-Content-Type-Options': 'nosniff'
+        },
         body : "presente"    
       }),
       invalidatesTags: ['veiculos']
@@ -90,7 +100,8 @@ export const veiculoApi = createApi({
         method: 'GET',
         headers:{
           "Cache-control": "no-cache",
-          'Content-Type': 'text/x-typescript' 
+          'Content-Type': 'text/x-typescript',
+          'X-Content-Type-Options': 'nosniff'
         }
        }),
       transformResponse: (response:Registro[]) => response,
@@ -99,7 +110,10 @@ export const veiculoApi = createApi({
     registrarSaidaDeVisitante: builder.mutation({
       query: ({id}) =>({
         url: `/registrarsaidadevisitantes/${id}`,
-        method: "PUT"
+        method: "PUT",
+        headers: {
+          'X-Content-Type-Options': 'nosniff'
+        },
       }),
       invalidatesTags:['veiculos']
     })
