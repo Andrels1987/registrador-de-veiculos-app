@@ -11,7 +11,7 @@ type PropsData = {
 let veiculoModel: Veiculo = new Veiculo()
 const CadastrarVeiculo = ({veiculoData}:PropsData ): JSX.Element => {
 
-    const [veiculo, setVeiculo] = useState(veiculoModel);
+    const [veiculo, setVeiculo] = useState<Veiculo>(veiculoModel);
     const [cadastrarVeiculo] = useCadastrarVeiculoMutation()    
     const [atualizarVeiculo] = useAtualizarVeiculoMutation()    
     useEffect(() => {
@@ -38,7 +38,8 @@ const CadastrarVeiculo = ({veiculoData}:PropsData ): JSX.Element => {
         setVeiculo(new Veiculo());
     }
     
-
+    console.log(veiculo);
+    
 
     return (
         <div className='minhadiv'>

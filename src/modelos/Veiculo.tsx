@@ -15,7 +15,7 @@ class Veiculo {
        "vaga": string = "";
       "tipoDeAutorizacao": string = "temporario";
        "status_de_acesso": string = "morador";
-      "motorista": Condutor;
+      "motorista": Condutor = new Condutor()
        "observacao": string = "";
 }
 

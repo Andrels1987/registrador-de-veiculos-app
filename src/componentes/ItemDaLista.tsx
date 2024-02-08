@@ -15,10 +15,11 @@ const ItemDaLista = ({ v }: Props,) => {
         setIsActive(!isActive)
     }
 
+    
 
     return (
         <>
-            <section> <p>{v.placa} | </p> <img alt="imagem do veiculo" className="logos" src={`/logos/${v.marca.trim() + '.png' || vite}`} />  <p>| {v.modelo} | </p>  <span style={{
+            <section> <p>{v.placa} | </p> <img alt="imagem do veiculo" className="logos" src={`/logos/${v?.marca.trim() + '.png' || vite}`} />  <p>| {v.modelo} | </p>  <span style={{
                 backgroundColor: `var(--${v.cor})`,
                 border: `${v.cor === 'branco' ? 'black' : '#deb887'} solid 2px`
             }} id="car-color"></span></section>
