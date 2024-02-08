@@ -38,7 +38,7 @@ const CadastrarVeiculo = ({veiculoData}:PropsData ): JSX.Element => {
         setVeiculo(new Veiculo());
     }
     
-    console.log(veiculo);
+
     
 
     return (
