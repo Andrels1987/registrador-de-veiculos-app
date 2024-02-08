@@ -13,7 +13,7 @@ import AreaDeVisitantes from './componentes/AreaDeVisitantes';
 const arrayVeiculo: Array<Veiculo> = []
 
 function App() {
-  const { data: registros } = useBuscarRegistroDeEntradasDeVeiculosQuery(arrayVeiculo);
+  const { data: registros, isLoading, isSuccess,isFetching } = useBuscarRegistroDeEntradasDeVeiculosQuery(arrayVeiculo);
   const [collectionVeiculos, setCollectionVeiculos] = useState(arrayVeiculo);
   const [parentNode, setParentNone] = useState(null);
   const { data: veiculos } = useGetVeiculosQuery(collectionVeiculos);
@@ -23,7 +23,7 @@ function App() {
     }
     return;
   }, [veiculos])
-
+  
   const mostrarInfoVeiculo = (e: any) => {
     let exibidos = document.getElementsByClassName("veiculo-list-item-exibido");
     let parent = e.target.parentNode
@@ -53,7 +53,7 @@ function App() {
     <>
       <Routes>
         <Route path='/' element={<Homepage />}/>
-        <Route path='veiculos' element={<ListaDeVeiculos collection={collectionVeiculos} mostrarInfo={mostrarInfoVeiculo}/>} />
+        <Route path='veiculos' element={<ListaDeVeiculos collection={collectionVeiculos} mostrarInfo={mostrarInfoVeiculo} isLoading={isLoading} isSuccess={isSuccess} isFetching={isFetching}/>} />
         <Route path='cadastrodeveiculos' element={<CadastrarVeiculo veiculoData={undefined}/>} />
         <Route path='atualizar/:id' element={<AtualizarVeiculo/>} />
         <Route path='areadevisitantes' element={<AreaDeVisitantes registros={registros} mostrarInfo={mostrarInfoVeiculo}/>} />

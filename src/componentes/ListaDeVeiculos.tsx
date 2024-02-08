@@ -3,13 +3,17 @@ import { Veiculo } from "../modelos/Veiculo"
 import { Link } from "react-router-dom"
 import { useRegistrarentradadevisitantesMutation } from "../features/api/apiSlice"
 import ItemDaLista from "./ItemDaLista"
+import Loading from "./Loading"
 
 type Props = {
-    collection: Array<any>,
-    mostrarInfo: Function
+    collection: Array<Veiculo>,
+    mostrarInfo: Function,
+    isLoading: boolean,
+    isSuccess: boolean,
+    isFetching: boolean
 }
 
-const ListaDeVeiculos = ({ collection, mostrarInfo}: Props): JSX.Element => {
+const ListaDeVeiculos = ({ collection, mostrarInfo, isLoading, isSuccess, isFetching }: Props): JSX.Element => {
     const [pesquisaVeiculo, setPesquisaVeiculo] = useState(collection);
     const [registrarEntradaDeVisitante] = useRegistrarentradadevisitantesMutation();
     const [placa, setPlaca] = useState("");
@@ -23,12 +27,14 @@ const ListaDeVeiculos = ({ collection, mostrarInfo}: Props): JSX.Element => {
 
 
     const handlePesquisaVeiculo = () => {
-        let newCollection: Array<Veiculo> = collection.filter(c => {
+        let newCollection: Array<Veiculo> | undefined = collection?.filter(c => {
             if (c.placa?.toUpperCase().includes(placa.toUpperCase()) && c?.placa !== null) {
                 return c;
             }
         })
-        setPesquisaVeiculo([...newCollection]);
+        if (newCollection) {
+            setPesquisaVeiculo([...newCollection]);
+        }
     }
 
 
@@ -37,6 +43,7 @@ const ListaDeVeiculos = ({ collection, mostrarInfo}: Props): JSX.Element => {
         e.preventDefault()
         registrarEntradaDeVisitante({ id })
     }
+   
 
 
     return (
@@ -51,26 +58,53 @@ const ListaDeVeiculos = ({ collection, mostrarInfo}: Props): JSX.Element => {
                 </fieldset>
 
             </form>
-            {pesquisaVeiculo.length > 0 ?
-                (pesquisaVeiculo.map(v =>
-                    <div key={v.id} onClick={(e) => mostrarInfo(e)} className="veiculo-list-item">
-                        <ItemDaLista  v={v}/> 
-                        <div>
-                            <Link style={{border: 'solid 1px white', borderRadius: '5px',padding: '3px 5px'}}to={`/atualizar/${v.id}`}>Atualizar</Link>
-                            <button onClick={(e) => registrarEntrada(v.id, e)}>Registrar Entrada</button>                 
-                        </div>      
-                    </div>
-                )) : (
-                    <div>
-                        {placa !== '' && pesquisaVeiculo.length === 0 ?
-                            (<div>
-                                <h5>Nenhum veiculo encontrado com essa placa</h5>
-                                <Link to={{ pathname: '/cadastrodeveiculos' }}>Cadastrar</Link>
-                            </div>) : (<p>Sem veiculos cadastrados</p>)}
-                    </div>
-                )}
+            {isFetching ?
+                (
+                    <Loading />
+                ) :
+                (
+                    pesquisaVeiculo.length === 0 ?
+                        (
+                            placa === "" ?
+                                (
+                                    <p> {!isLoading ? "" : "Sem veiculos cadastrados"}</p>
+                                )
+                                :
+                                (
+                                    <div>
+                                        <h5>Nenhum veiculo encontrado com essa placa</h5>
+                                        <Link to={{ pathname: '/cadastrodeveiculos' }}>Cadastrar</Link>
+                                    </div>
+                                )
+                        ) :
+                        (
+
+                            pesquisaVeiculo
+                                .map(v =>
+                                    <div key={v.id} onClick={(e) => mostrarInfo(e)} className="veiculo-list-item">
+                                        <ItemDaLista v={v} />
+                                        <div>
+                                            <Link style={{ border: 'solid 1px white', borderRadius: '5px', padding: '3px 5px' }} to={`/atualizar/${v.id}`}>Atualizar</Link>
+                                            <button onClick={(e) => registrarEntrada(v.id, e)}>Registrar Entrada</button>
+                                        </div>
+                                    </div>
+                                )
+
+
+                        )
+
+                )
+
+            }
+
+
+
         </div>
+
     )
+
+
 }
+
 
 export default ListaDeVeiculos;

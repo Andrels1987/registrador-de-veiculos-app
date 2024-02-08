@@ -7,8 +7,8 @@ import { Registro } from '../../modelos/Registros';
 export const veiculoApi = createApi({
   reducerPath: 'api',
   tagTypes: ['veiculos'],
-  //baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8023/' }),
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://registrador-de-veiculos.onrender.com' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8023/' }),
+  //baseQuery: fetchBaseQuery({ baseUrl: 'https://registrador-de-veiculos.onrender.com' }),
   endpoints: (builder) => ({
     getVeiculos: builder.query<Veiculo[], any>({
       query: () => ({
@@ -90,7 +90,7 @@ export const veiculoApi = createApi({
         method: 'GET',
         headers:{
           "Cache-control": "no-cache",
-          'Content-Type': 'text/html; charset=utf-8' 
+          'Content-Type': 'text/x-typescript' 
         }
        }),
       transformResponse: (response:Registro[]) => response,

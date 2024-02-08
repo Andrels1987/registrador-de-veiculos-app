@@ -15,7 +15,7 @@ const AreaDeVisitantes = ({registros, mostrarInfo}: Props): JSX.Element => {
         if (registros) {
             registrosFiltrados = registros.filter((registro:any) => registro.statusVisita === "presente")
         }
-    }, [registros])
+    }, [registros, registrosFiltrados])
 
 
 
@@ -23,6 +23,9 @@ const AreaDeVisitantes = ({registros, mostrarInfo}: Props): JSX.Element => {
         e.preventDefault();
         registrarSaidaDeVisitante({ id })
     }
+
+    
+    
     return (      
            
          <div className="areadevisitantes">
