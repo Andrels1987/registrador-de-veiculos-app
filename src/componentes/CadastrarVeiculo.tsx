@@ -94,7 +94,7 @@ const CadastrarVeiculo = ({veiculoData}:PropsData ): JSX.Element => {
                         <div className='morador'>
                             <div className='nome-morador'>
                                 <label htmlFor="nome-morador">Nome</label>
-                                <input type="text" value={veiculo.motorista?.nome || ""} placeholder={`nome do ${veiculo.status_de_acesso}`} name='nome-morador' id='nome-morador' onChange={(e) => setVeiculo({...veiculo, motorista:{...veiculo.motorista, nome: e.target.value}})} required />
+                                <input type="text" value={veiculo?.motorista?.nome || ""} placeholder={`nome do ${veiculo.status_de_acesso}`} name='nome-morador' id='nome-morador' onChange={(e) => setVeiculo({...veiculo, motorista:{...veiculo.motorista, nome: e.target.value}})} required />
                                 <small></small>
                             </div>
                             <div className='apartamento'>
