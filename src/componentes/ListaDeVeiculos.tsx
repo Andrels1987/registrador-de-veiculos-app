@@ -13,7 +13,7 @@ type Props = {
     isFetching: boolean
 }
 
-const ListaDeVeiculos = ({ collection, mostrarInfo, isLoading, isSuccess, isFetching }: Props): JSX.Element => {
+const ListaDeVeiculos = ({ collection, mostrarInfo, isLoading, isFetching }: Props): JSX.Element => {
     const [pesquisaVeiculo, setPesquisaVeiculo] = useState(collection);
     const [registrarEntradaDeVisitante] = useRegistrarentradadevisitantesMutation();
     const [placa, setPlaca] = useState("");
