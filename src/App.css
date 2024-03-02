@@ -165,7 +165,10 @@
   flex-direction: row;
   align-items: flex-start;
 }
-
+#form-pesquisar-veiculo input{
+  color: black;
+  font-weight: 700;
+}
 
 .placa, .modelo, .marca, .cor, .vaga, 
 .autorizacao, .acesso, .nome-morador, .doc, .bloco, .apartamento,
