@@ -184,6 +184,8 @@
 input{
  width: 350px;
  margin-left: .4em;
+  font-weight: 500;
+  color: black;
 }
 
 .areadevisitantes{ text-align: center;}
